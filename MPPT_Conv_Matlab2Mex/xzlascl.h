@@ -2,14 +2,14 @@
  * Academic License - for use in teaching, academic research, and meeting
  * course requirements at degree granting institutions only.  Not for
  * government, commercial, or other organizational use.
- * File: log2.h
+ * File: xzlascl.h
  *
  * MATLAB Coder version            : 24.1
- * C/C++ source code generated on  : 21-May-2024 21:38:08
+ * C/C++ source code generated on  : 21-May-2024 22:00:04
  */
 
-#ifndef LOG2_H
-#define LOG2_H
+#ifndef XZLASCL_H
+#define XZLASCL_H
 
 /* Include Files */
 #include "rtwtypes.h"
@@ -21,7 +21,9 @@ extern "C" {
 #endif
 
 /* Function Declarations */
-double b_log2(double x);
+void b_xzlascl(double cfrom, double cto, int m, double *A);
+
+void xzlascl(double cfrom, double cto, int m, double A[2], int iA0);
 
 #ifdef __cplusplus
 }
@@ -29,7 +31,7 @@ double b_log2(double x);
 
 #endif
 /*
- * File trailer for log2.h
+ * File trailer for xzlascl.h
  *
  * [EOF]
  */

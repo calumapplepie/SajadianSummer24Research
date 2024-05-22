@@ -1,6 +1,3 @@
-rt_nonfinite.obj
-rtGetNaN.obj
-rtGetInf.obj
 CostFunction_initialize.obj
 CostFunction_terminate.obj
 CostFunction.obj
@@ -8,6 +5,5 @@ expm.obj
 xdlaev2.obj
 xzlartg.obj
 mpower.obj
-log2.obj
 xzsteqr.obj
 xzlascl.obj

@@ -5,13 +5,12 @@
  * File: CostFunction.c
  *
  * MATLAB Coder version            : 24.1
- * C/C++ source code generated on  : 21-May-2024 21:38:08
+ * C/C++ source code generated on  : 21-May-2024 22:00:04
  */
 
 /* Include Files */
 #include "CostFunction.h"
 #include "expm.h"
-#include "rt_nonfinite.h"
 #include <math.h>
 
 /* Function Definitions */
@@ -47,6 +46,7 @@ void CostFunction(double Vdc, const double sys[5], const double Ref[2],
   double a22;
   double d;
   double d1;
+  double d10;
   double d2;
   double d3;
   double d4;
@@ -56,7 +56,6 @@ void CostFunction(double Vdc, const double sys[5], const double Ref[2],
   double d8;
   double d9;
   double v2_tmp_im;
-  double v2_tmp_re;
   int VSI;
   int r1;
   int r2;
@@ -115,7 +114,7 @@ void CostFunction(double Vdc, const double sys[5], const double Ref[2],
   Bd[0] = A[0] * sys[0];
   Bd[1] = sys[0] * A[1];
   Bd[2] = sys[0] * A[2];
-  Bd[3] = 0.0 * sys[0];
+  Bd[3] = 0.0;
   expm(Bd, Ad);
   /* 'CostFunction:44' Bd = A\(Ad - I); */
   b_I[0] = Ad[0] - 1.0;
@@ -137,7 +136,6 @@ void CostFunction(double Vdc, const double sys[5], const double Ref[2],
   /* 'CostFunction:48' v0 =  0; */
   /* 'CostFunction:49' v1 =  2/3 *Vdc; */
   /* 'CostFunction:50' v2 =  1/3*Vdc + 1j*sqrt(3)/3*Vdc; */
-  v2_tmp_re = Vdc * 0.0;
   v2_tmp_im = Vdc * 0.57735026918962573;
   /* 'CostFunction:51' v3 = -1/3*Vdc + 1j*sqrt(3)/3*Vdc; */
   /* 'CostFunction:52' v4 = -2/3*Vdc; */
@@ -149,15 +147,15 @@ void CostFunction(double Vdc, const double sys[5], const double Ref[2],
   Vinv[0].im = 0.0;
   Vinv[1].re = 0.66666666666666663 * Vdc;
   Vinv[1].im = 0.0;
-  Vinv[2].re = 0.33333333333333331 * Vdc + v2_tmp_re;
+  Vinv[2].re = 0.33333333333333331 * Vdc;
   Vinv[2].im = v2_tmp_im;
-  Vinv[3].re = -0.33333333333333331 * Vdc + v2_tmp_re;
+  Vinv[3].re = -0.33333333333333331 * Vdc;
   Vinv[3].im = v2_tmp_im;
   Vinv[4].re = -0.66666666666666663 * Vdc;
   Vinv[4].im = 0.0;
-  Vinv[5].re = -0.33333333333333331 * Vdc - v2_tmp_re;
+  Vinv[5].re = -0.33333333333333331 * Vdc;
   Vinv[5].im = 0.0 - v2_tmp_im;
-  Vinv[6].re = 0.33333333333333331 * Vdc - v2_tmp_re;
+  Vinv[6].re = 0.33333333333333331 * Vdc;
   Vinv[6].im = 0.0 - v2_tmp_im;
   Vinv[7].re = 0.0;
   Vinv[7].im = 0.0;
@@ -174,9 +172,9 @@ void CostFunction(double Vdc, const double sys[5], const double Ref[2],
   d6 = Ad[3];
   d7 = Vc[0];
   d8 = Vc[1];
-  a21 = (b_I[r2] - b_I[r1] * a21) / a22;
-  a22 = Io[0];
-  d9 = Io[1];
+  a22 = (b_I[r2] - b_I[r1] * a21) / a22;
+  d9 = Io[0];
+  d10 = Io[1];
   for (r1 = 0; r1 < 8; r1++) {
     /*  i-th voltage vector for current prediction */
     /* 'CostFunction:67' Vinva = real(Vinv(i)); */
@@ -190,9 +188,9 @@ void CostFunction(double Vdc, const double sys[5], const double Ref[2],
     /* 'CostFunction:77' y= Ad*[ILb;Vcb] + Bd*[Vinvb;Iob]; */
     /* 'CostFunction:78' V_k1b = y(2); */
     /* 'CostFunction:82' J = VSI*((refa - V_k1a)^2 + (refb - V_k1b)^2); */
-    v2_tmp_re = d1 - ((d3 * d5 + d7 * d6) + (a21 * Vinv[r1].re + d * a22));
-    v2_tmp_im = d2 - ((d5 * d4 + d8 * d6) + (a21 * Vinv[r1].im + d * d9));
-    *J = (double)VSI * (v2_tmp_re * v2_tmp_re + v2_tmp_im * v2_tmp_im);
+    v2_tmp_im = d1 - ((d3 * d5 + d7 * d6) + (a22 * Vinv[r1].re + d * d9));
+    a21 = d2 - ((d5 * d4 + d8 * d6) + (a22 * Vinv[r1].im + d * d10));
+    *J = (double)VSI * (v2_tmp_im * v2_tmp_im + a21 * a21);
     /* 'CostFunction:84' if ( J < J_out) */
     if (*J < J_out) {
       /* 'CostFunction:85' J_out = J; */

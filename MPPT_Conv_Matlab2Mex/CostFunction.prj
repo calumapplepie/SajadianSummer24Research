@@ -1,5 +1,5 @@
 <deployment-project plugin="plugin.coder" plugin-version="R2024a">
-  <configuration build-checksum="852991207" file="C:\Users\calum\Documents\MPPT_Conv_Matlab2Mex\MPPT_Conv_Matlab2Mex\CostFunction.prj" location="C:\Users\calum\Documents\MPPT_Conv_Matlab2Mex\MPPT_Conv_Matlab2Mex" name="CostFunction" target="target.unifiedcoder" target-name="MATLAB Coder">
+  <configuration build-checksum="102862388" file="C:\Users\calum\Documents\MPPT_Conv_Matlab2Mex\MPPT_Conv_Matlab2Mex\CostFunction.prj" location="C:\Users\calum\Documents\MPPT_Conv_Matlab2Mex\MPPT_Conv_Matlab2Mex" name="CostFunction" target="target.unifiedcoder" target-name="MATLAB Coder">
     <profile key="profile.mex">
       <param.BuiltInstrumentedMex>false</param.BuiltInstrumentedMex>
       <param.RanInstrumentedMex>false</param.RanInstrumentedMex>
@@ -194,7 +194,7 @@
       <param.InstructionSetExtensionsConfig.FMA>false</param.InstructionSetExtensionsConfig.FMA>
       <param.SaturateOnIntegerOverflow>true</param.SaturateOnIntegerOverflow>
       <param.PurelyIntegerCode>false</param.PurelyIntegerCode>
-      <param.SupportNonFinite>true</param.SupportNonFinite>
+      <param.SupportNonFinite>false</param.SupportNonFinite>
       <param.LoopUnrollThreshold>5</param.LoopUnrollThreshold>
       <param.EnableAutoParallelization>false</param.EnableAutoParallelization>
       <param.NumberOfCpuThreads>0</param.NumberOfCpuThreads>
@@ -412,7 +412,6 @@
         <param.InstructionSetExtensionsConfig.FMA />
         <param.SaturateOnIntegerOverflow />
         <param.PurelyIntegerCode />
-        <param.SupportNonFinite />
         <param.LoopUnrollThreshold />
         <param.EnableAutoParallelization />
         <param.NumberOfCpuThreads />
@@ -634,7 +633,7 @@
     <param.hdlParamStorage />
     <var.gc.lastOutputRoot>codegen\lib\CostFunction</var.gc.lastOutputRoot>
     <var.gc.lastOutputType>C_CODE</var.gc.lastOutputType>
-    <var.gc.preBuildChecksum>852991207</var.gc.preBuildChecksum>
+    <var.gc.preBuildChecksum>102862388</var.gc.preBuildChecksum>
     <var.cfi.lastOutputRoot>codegen\mex\CostFunction</var.cfi.lastOutputRoot>
     <var.cfi.preBuildChecksum>4049746865</var.cfi.preBuildChecksum>
     <var.lastCfiTestSnippet>fcn(300,[1e-05,0.005,3e-05,0.9,0.5],[-103,135],[-4.1,2.5],[-101,134],[-2.34,3.09],0)</var.lastCfiTestSnippet>

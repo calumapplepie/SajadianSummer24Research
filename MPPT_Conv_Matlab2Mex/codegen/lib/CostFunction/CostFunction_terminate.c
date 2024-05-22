@@ -5,12 +5,11 @@
  * File: CostFunction_terminate.c
  *
  * MATLAB Coder version            : 24.1
- * C/C++ source code generated on  : 21-May-2024 21:38:08
+ * C/C++ source code generated on  : 21-May-2024 22:00:04
  */
 
 /* Include Files */
 #include "CostFunction_terminate.h"
-#include "rt_nonfinite.h"
 
 /* Function Definitions */
 /*

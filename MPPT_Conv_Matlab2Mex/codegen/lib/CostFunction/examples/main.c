@@ -5,7 +5,7 @@
  * File: main.c
  *
  * MATLAB Coder version            : 24.1
- * C/C++ source code generated on  : 21-May-2024 21:38:08
+ * C/C++ source code generated on  : 21-May-2024 22:00:04
  */
 
 /*************************************************************************/
@@ -37,7 +37,6 @@
 #include "main.h"
 #include "CostFunction.h"
 #include "CostFunction_terminate.h"
-#include "rt_nonfinite.h"
 
 /* Function Declarations */
 static void argInit_1x2_real_T(double result[2]);

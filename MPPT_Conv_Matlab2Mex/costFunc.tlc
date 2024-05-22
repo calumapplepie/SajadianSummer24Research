@@ -1,5 +1,5 @@
 %% File : costFunc.tlc
-%% Created : Tue May 21 21:42:35 2024
+%% Created : Tue May 21 22:12:04 2024
 %%
 %% Description: 
 %%   Simulink Coder wrapper functions interface generated for 
@@ -52,7 +52,7 @@
 			%<doubleType> *Sa,
 			%<doubleType> *Sb,
 			%<doubleType> *Sc,
-			%<doubleType> *j);
+			%<doubleType> *J);
     #undef SFB_EXTERN_C
     #endif
     %closefile hFile
@@ -80,7 +80,7 @@
 			%<doubleType> *Sa,
 			%<doubleType> *Sb,
 			%<doubleType> *Sc,
-			%<doubleType> *j);
+			%<doubleType> *J);
     extern void costFunc_Terminate_wrapper(void);
     void costFunc_Outputs_wrapper_accel(const %<doubleType> *Vdc,
 			const %<doubleType> *sys,
@@ -92,7 +92,7 @@
 			%<doubleType> *Sa,
 			%<doubleType> *Sb,
 			%<doubleType> *Sc,
-			%<doubleType> *j){
+			%<doubleType> *J){
     costFunc_Outputs_wrapper(Vdc,
 			sys,
 			Ref,
@@ -103,7 +103,7 @@
 			Sa,
 			Sb,
 			Sc,
-			j);
+			J);
     }
 
     %closefile cFile
@@ -131,7 +131,7 @@
 			%<doubleType> *Sa,
 			%<doubleType> *Sb,
 			%<doubleType> *Sc,
-			%<doubleType> *j);
+			%<doubleType> *J);
 
     SFB_EXTERN_C void costFunc_Terminate_wrapper(void);
 

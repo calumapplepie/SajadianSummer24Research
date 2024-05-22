@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  -------------------------------------------------------------------------
  *
- * Created: Tue May 21 21:42:35 2024
+ * Created: Tue May 21 22:12:04 2024
  */
 
 #define S_FUNCTION_LEVEL               2
@@ -235,7 +235,7 @@
 #define OUT_2_SLOPE                    0.125
 
 /* Output Port  3 */
-#define OUT_PORT_3_NAME                j
+#define OUT_PORT_3_NAME                J
 #define OUTPUT_3_DIMS_ND               {1,1}
 #define OUTPUT_3_NUM_ELEMS             1
 #define OUTPUT_3_WIDTH                 1
@@ -281,7 +281,7 @@ extern void costFunc_Outputs_wrapper(const real_T *Vdc,
   real_T *Sa,
   real_T *Sb,
   real_T *Sc,
-  real_T *j);
+  real_T *J);
 
 /*====================*
  * S-function methods *
@@ -509,7 +509,7 @@ static void mdlInitializeSizes(SimStruct *S)
       ssSetOutputPortUnit(S, 3, outUnitIdReg);
     } else {
       ssSetLocalErrorStatus(S,
-                            "Invalid Unit provided for output port j of S-Function costFunc");
+                            "Invalid Unit provided for output port J of S-Function costFunc");
       return;
     }
 
@@ -671,8 +671,8 @@ static void mdlOutputs(SimStruct *S, int_T tid)
   real_T *Sa = (real_T *) ssGetOutputPortRealSignal(S, 0);
   real_T *Sb = (real_T *) ssGetOutputPortRealSignal(S, 1);
   real_T *Sc = (real_T *) ssGetOutputPortRealSignal(S, 2);
-  real_T *j = (real_T *) ssGetOutputPortRealSignal(S, 3);
-  costFunc_Outputs_wrapper(Vdc, sys, Ref, If, Vc, Io, mode, Sa, Sb, Sc, j);
+  real_T *J = (real_T *) ssGetOutputPortRealSignal(S, 3);
+  costFunc_Outputs_wrapper(Vdc, sys, Ref, If, Vc, Io, mode, Sa, Sb, Sc, J);
 }
 
 /* Function: mdlTerminate =====================================================

@@ -2,7 +2,7 @@
 ## Makefile generated for component 'CostFunction'. 
 ## 
 ## Makefile     : CostFunction_rtw.mk
-## Generated on : Tue May 21 21:38:26 2024
+## Generated on : Tue May 21 22:00:20 2024
 ## Final product: ./CostFunction.lib
 ## Product type : static-library
 ## 
@@ -183,7 +183,7 @@ DEFINES = $(DEFINES_) $(DEFINES_CUSTOM) $(DEFINES_STANDARD)
 ## SOURCE FILES
 ###########################################################################
 
-SRCS = $(START_DIR)/codegen/lib/CostFunction/rt_nonfinite.c $(START_DIR)/codegen/lib/CostFunction/rtGetNaN.c $(START_DIR)/codegen/lib/CostFunction/rtGetInf.c $(START_DIR)/codegen/lib/CostFunction/CostFunction_initialize.c $(START_DIR)/codegen/lib/CostFunction/CostFunction_terminate.c $(START_DIR)/codegen/lib/CostFunction/CostFunction.c $(START_DIR)/codegen/lib/CostFunction/expm.c $(START_DIR)/codegen/lib/CostFunction/xdlaev2.c $(START_DIR)/codegen/lib/CostFunction/xzlartg.c $(START_DIR)/codegen/lib/CostFunction/mpower.c $(START_DIR)/codegen/lib/CostFunction/log2.c $(START_DIR)/codegen/lib/CostFunction/xzsteqr.c $(START_DIR)/codegen/lib/CostFunction/xzlascl.c
+SRCS = $(START_DIR)/codegen/lib/CostFunction/CostFunction_initialize.c $(START_DIR)/codegen/lib/CostFunction/CostFunction_terminate.c $(START_DIR)/codegen/lib/CostFunction/CostFunction.c $(START_DIR)/codegen/lib/CostFunction/expm.c $(START_DIR)/codegen/lib/CostFunction/xdlaev2.c $(START_DIR)/codegen/lib/CostFunction/xzlartg.c $(START_DIR)/codegen/lib/CostFunction/mpower.c $(START_DIR)/codegen/lib/CostFunction/xzsteqr.c $(START_DIR)/codegen/lib/CostFunction/xzlascl.c
 
 ALL_SRCS = $(SRCS)
 
@@ -191,7 +191,7 @@ ALL_SRCS = $(SRCS)
 ## OBJECTS
 ###########################################################################
 
-OBJS = rt_nonfinite.obj rtGetNaN.obj rtGetInf.obj CostFunction_initialize.obj CostFunction_terminate.obj CostFunction.obj expm.obj xdlaev2.obj xzlartg.obj mpower.obj log2.obj xzsteqr.obj xzlascl.obj
+OBJS = CostFunction_initialize.obj CostFunction_terminate.obj CostFunction.obj expm.obj xdlaev2.obj xzlartg.obj mpower.obj xzsteqr.obj xzlascl.obj
 
 ALL_OBJS = $(OBJS)
 
@@ -414,18 +414,6 @@ $(PRODUCT) : $(OBJS) $(PREBUILT_OBJS)
 	$(CPP) $(CPPFLAGS) -o "$@" "$<"
 
 
-rt_nonfinite.obj : $(START_DIR)/codegen/lib/CostFunction/rt_nonfinite.c
-	$(CC) $(CFLAGS) -o "$@" "$<"
-
-
-rtGetNaN.obj : $(START_DIR)/codegen/lib/CostFunction/rtGetNaN.c
-	$(CC) $(CFLAGS) -o "$@" "$<"
-
-
-rtGetInf.obj : $(START_DIR)/codegen/lib/CostFunction/rtGetInf.c
-	$(CC) $(CFLAGS) -o "$@" "$<"
-
-
 CostFunction_initialize.obj : $(START_DIR)/codegen/lib/CostFunction/CostFunction_initialize.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
@@ -451,10 +439,6 @@ xzlartg.obj : $(START_DIR)/codegen/lib/CostFunction/xzlartg.c
 
 
 mpower.obj : $(START_DIR)/codegen/lib/CostFunction/mpower.c
-	$(CC) $(CFLAGS) -o "$@" "$<"
-
-
-log2.obj : $(START_DIR)/codegen/lib/CostFunction/log2.c
 	$(CC) $(CFLAGS) -o "$@" "$<"
 
 

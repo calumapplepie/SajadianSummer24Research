@@ -18,25 +18,16 @@
 #include <math.h>
 #include <stddef.h>
 #include <stdlib.h>
-#if defined(__APPLE__)
-#ifndef INT64_T
-#define INT64_T long
-#define FMT64 "l"
-#if defined(__LP64__) && !defined(INT_TYPE_64_IS_LONG)
-#define INT_TYPE_64_IS_LONG
-#endif
-#endif
-#endif
 
-#if defined(__APPLE__)
-#ifndef UINT64_T
-#define UINT64_T unsigned long
-#define FMT64 "l"
-#if defined(__LP64__) && !defined(INT_TYPE_64_IS_LONG)
-#define INT_TYPE_64_IS_LONG
-#endif
-#endif
-#endif
+// horrendous form, but it works
+
+#include "xzsteqr.c"
+#include "xdlaev2.c"
+#include "xzlartg.c"
+#include "xzlascl.c"
+
+#include "mpower.c"
+#include "expm.c" 
 /* %%%-SFUNWIZ_wrapper_includes_Changes_END --- EDIT HERE TO _BEGIN */
 #define u_width 1
 #define u_1_width 1
@@ -72,7 +63,7 @@ void costFunc_Outputs_wrapper(const real_T *Vdc,
 			real_T *Sa,
 			real_T *Sb,
 			real_T *Sc,
-			real_T *j)
+			real_T *J)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
   static const signed char states[24] = {0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1,
@@ -131,7 +122,7 @@ void costFunc_Outputs_wrapper(const real_T *Vdc,
   /* 'CostFunction:23' Mode = VSI; */
   /*  Select Operation Mode */
   /* 'CostFunction:25' if mode == 0 */
-  if (mode == 0.0) {
+  if (*mode == 0.0) {
     /* 'CostFunction:26' VSI = 1; */
     VSI = 1;
     /* 'CostFunction:26' CSI = 0; */
@@ -177,8 +168,8 @@ void costFunc_Outputs_wrapper(const real_T *Vdc,
   /* 'CostFunction:48' v0 =  0; */
   /* 'CostFunction:49' v1 =  2/3 *Vdc; */
   /* 'CostFunction:50' v2 =  1/3*Vdc + 1j*sqrt(3)/3*Vdc; */
-  v2_tmp_re = Vdc * 0.0;
-  v2_tmp_im = Vdc * 0.57735026918962573;
+  v2_tmp_re = *Vdc * 0.0;
+  v2_tmp_im = *Vdc * 0.57735026918962573;
   /* 'CostFunction:51' v3 = -1/3*Vdc + 1j*sqrt(3)/3*Vdc; */
   /* 'CostFunction:52' v4 = -2/3*Vdc; */
   /* 'CostFunction:53' v5 = -1/3*Vdc - 1j*sqrt(3)/3*Vdc; */
@@ -187,17 +178,17 @@ void costFunc_Outputs_wrapper(const real_T *Vdc,
   /* 'CostFunction:56' Vinv = [v0 v1 v2 v3 v4 v5 v6 v7]; */
   Vinv[0].re = 0.0;
   Vinv[0].im = 0.0;
-  Vinv[1].re = 0.66666666666666663 * Vdc;
+  Vinv[1].re = 0.66666666666666663 * *Vdc;
   Vinv[1].im = 0.0;
-  Vinv[2].re = 0.33333333333333331 * Vdc + v2_tmp_re;
+  Vinv[2].re = 0.33333333333333331 * *Vdc + v2_tmp_re;
   Vinv[2].im = v2_tmp_im;
-  Vinv[3].re = -0.33333333333333331 * Vdc + v2_tmp_re;
+  Vinv[3].re = -0.33333333333333331 * *Vdc + v2_tmp_re;
   Vinv[3].im = v2_tmp_im;
-  Vinv[4].re = -0.66666666666666663 * Vdc;
+  Vinv[4].re = -0.66666666666666663 * *Vdc;
   Vinv[4].im = 0.0;
-  Vinv[5].re = -0.33333333333333331 * Vdc - v2_tmp_re;
+  Vinv[5].re = -0.33333333333333331 * *Vdc - v2_tmp_re;
   Vinv[5].im = 0.0 - v2_tmp_im;
-  Vinv[6].re = 0.33333333333333331 * Vdc - v2_tmp_re;
+  Vinv[6].re = 0.33333333333333331 * *Vdc - v2_tmp_re;
   Vinv[6].im = 0.0 - v2_tmp_im;
   Vinv[7].re = 0.0;
   Vinv[7].im = 0.0;

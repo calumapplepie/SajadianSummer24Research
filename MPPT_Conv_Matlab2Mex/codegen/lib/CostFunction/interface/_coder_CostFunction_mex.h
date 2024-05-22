@@ -5,7 +5,7 @@
  * File: _coder_CostFunction_mex.h
  *
  * MATLAB Coder version            : 24.1
- * C/C++ source code generated on  : 21-May-2024 21:38:08
+ * C/C++ source code generated on  : 21-May-2024 22:00:04
  */
 
 #ifndef _CODER_COSTFUNCTION_MEX_H
