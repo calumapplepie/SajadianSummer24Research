@@ -26,7 +26,7 @@
  * | See matlabroot/simulink/src/sfuntmpl_doc.c for a more detailed template |
  *  -------------------------------------------------------------------------
  *
- * Created: Tue May 21 22:12:04 2024
+ * Created: Wed May 22 20:16:44 2024
  */
 
 #define S_FUNCTION_LEVEL               2
@@ -58,16 +58,16 @@
 
 /* Input Port  1 */
 #define IN_PORT_1_NAME                 sys
-#define INPUT_1_DIMS_ND                {1,1}
-#define INPUT_1_NUM_ELEMS              1
-#define INPUT_1_WIDTH                  1
+#define INPUT_1_DIMS_ND                {5,1}
+#define INPUT_1_NUM_ELEMS              5
+#define INPUT_1_WIDTH                  5
 #define INPUT_DIMS_1_COL               1
 #define INPUT_1_DTYPE                  real_T
 #define INPUT_1_COMPLEX                COMPLEX_NO
 #define INPUT_1_UNIT                   ""
 #define IN_1_BUS_BASED                 0
 #define IN_1_BUS_NAME
-#define IN_1_DIMS                      1-D
+#define IN_1_DIMS                      2-D
 #define INPUT_1_FEEDTHROUGH            1
 #define IN_1_ISSIGNED                  0
 #define IN_1_WORDLENGTH                8
@@ -78,9 +78,9 @@
 
 /* Input Port  2 */
 #define IN_PORT_2_NAME                 Ref
-#define INPUT_2_DIMS_ND                {5,1}
-#define INPUT_2_NUM_ELEMS              5
-#define INPUT_2_WIDTH                  5
+#define INPUT_2_DIMS_ND                {2,1}
+#define INPUT_2_NUM_ELEMS              2
+#define INPUT_2_WIDTH                  2
 #define INPUT_DIMS_2_COL               1
 #define INPUT_2_DTYPE                  real_T
 #define INPUT_2_COMPLEX                COMPLEX_NO
@@ -313,14 +313,18 @@ static void mdlInitializeSizes(SimStruct *S)
   ssSetInputPortRequiredContiguous(S, 0, 1);/*direct input signal access*/
 
   /* Input Port 1 */
-  ssSetInputPortWidth(S, 1, INPUT_1_NUM_ELEMS);
+  ssAllowSignalsWithMoreThan2D(S);
+  inputDimsInfo.numDims = 2;
+  inputDimsInfo.width = INPUT_1_NUM_ELEMS;
+  int_T in1Dims[] = INPUT_1_DIMS_ND;
+  inputDimsInfo.dims = in1Dims;
+  ssSetInputPortDimensionInfo(S, 1, &inputDimsInfo);
   ssSetInputPortDataType(S, 1, SS_DOUBLE);
   ssSetInputPortComplexSignal(S, 1, INPUT_1_COMPLEX);
   ssSetInputPortDirectFeedThrough(S, 1, INPUT_1_FEEDTHROUGH);
   ssSetInputPortRequiredContiguous(S, 1, 1);/*direct input signal access*/
 
   /* Input Port 2 */
-  ssAllowSignalsWithMoreThan2D(S);
   inputDimsInfo.numDims = 2;
   inputDimsInfo.width = INPUT_2_NUM_ELEMS;
   int_T in2Dims[] = INPUT_2_DIMS_ND;
@@ -526,7 +530,7 @@ static void mdlInitializeSizes(SimStruct *S)
   ssSetSimulinkVersionGeneratedIn(S, "24.1");
 
   /* Take care when specifying exception free code - see sfuntmpl_doc.c */
-  ssSetRuntimeThreadSafetyCompliance(S, RUNTIME_THREAD_SAFETY_COMPLIANCE_FALSE);
+  ssSetRuntimeThreadSafetyCompliance(S, RUNTIME_THREAD_SAFETY_COMPLIANCE_TRUE);
   ssSetOptions(S, (SS_OPTION_EXCEPTION_FREE_CODE |
                    SS_OPTION_USE_TLC_WITH_ACCELERATOR |
                    SS_OPTION_WORKS_WITH_CODE_REUSE));
@@ -564,6 +568,16 @@ static void mdlSetDefaultPortDimensionInfo(SimStruct *S)
 {
   DECL_AND_INIT_DIMSINFO(portDimsInfo);
   int_T dims[2];
+
+  /* Setting default dimensions for input port 1 */
+  portDimsInfo.width = INPUT_1_NUM_ELEMS;
+  dims[0] = INPUT_1_NUM_ELEMS;
+  dims[1] = 1;
+  portDimsInfo.dims = dims;
+  portDimsInfo.numDims = 2;
+  if (ssGetInputPortWidth(S, 1) == DYNAMICALLY_SIZED) {
+    ssSetInputPortMatrixDimensions(S, 1, 1 , 1);
+  }
 
   /* Setting default dimensions for input port 2 */
   portDimsInfo.width = INPUT_2_NUM_ELEMS;

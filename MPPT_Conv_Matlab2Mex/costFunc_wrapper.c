@@ -27,11 +27,11 @@
 #include "xzlascl.c"
 
 #include "mpower.c"
-#include "expm.c" 
+#include "expm.c"
 /* %%%-SFUNWIZ_wrapper_includes_Changes_END --- EDIT HERE TO _BEGIN */
 #define u_width 1
-#define u_1_width 1
-#define u_2_width 5
+#define u_1_width 5
+#define u_2_width 2
 #define u_3_width 2
 #define u_4_width 2
 #define u_5_width 2
@@ -66,7 +66,7 @@ void costFunc_Outputs_wrapper(const real_T *Vdc,
 			real_T *J)
 {
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_BEGIN --- EDIT HERE TO _END */
-  static const signed char states[24] = {0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1,
+static const signed char states[24] = {0, 1, 1, 0, 0, 0, 1, 1, 0, 0, 1, 1,
                                          1, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1};
   creal_T Vinv[8];
   double A[4];
@@ -238,7 +238,6 @@ void costFunc_Outputs_wrapper(const real_T *Vdc,
   *Sb = states[xout + 8];
   /* 'CostFunction:93' Sc = states(xout,3); */
   *Sc = states[xout + 16];
-
 /* %%%-SFUNWIZ_wrapper_Outputs_Changes_END --- EDIT HERE TO _BEGIN */
 }
 
