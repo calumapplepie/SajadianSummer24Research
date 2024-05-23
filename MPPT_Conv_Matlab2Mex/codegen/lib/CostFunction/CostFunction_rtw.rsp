@@ -1,9 +1,0 @@
-CostFunction_initialize.obj
-CostFunction_terminate.obj
-CostFunction.obj
-expm.obj
-xdlaev2.obj
-xzlartg.obj
-mpower.obj
-xzsteqr.obj
-xzlascl.obj
