@@ -1,2 +1,4 @@
 *.mldatx
 */slprj/_*
+*/codegen/mex
+*/codegen/lib
