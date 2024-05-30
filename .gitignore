@@ -1,4 +1,7 @@
 *.mldatx
-*/slprj/_*
+*.mex64
+*.mexw64
+*_wrapper.c
+*/slprj/*
 */codegen/mex
 */codegen/lib
